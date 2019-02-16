@@ -40,11 +40,16 @@ INSTALLED_APPS = [
     'cookbook',
     'animal',
     'graphene_django',
+    # cors 설정용
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # cors 설정용 / django.middleware.common.CommonMiddleware 보다 위에 있어야 함
+    # urls 에서 graphql 부분에 csrf_exempt 라는 예외처리를 함
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -130,4 +135,5 @@ GRAPHENE = {
     'SCHEMA' : 'schema.schema' # Where your Graphene schema lives
 }
 
-
+# cors 설정용
+CORS_ORIGIN_ALLOW_ALL = True

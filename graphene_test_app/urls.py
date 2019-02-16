@@ -18,6 +18,9 @@ from django.urls import path
 from django.conf.urls import url
 from . import views
 
+from django.views.decorators.csrf import csrf_exempt
+
+
 from schema import schema
 
 from graphene_django.views import GraphQLView
@@ -25,6 +28,6 @@ from graphene_django.views import GraphQLView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    url(r'^graphql', GraphQLView.as_view(graphiql=True, schema=schema)), #graphiql 은 개발자 모드
+    url(r'^graphql', csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema))), #graphiql 은 개발자 모드
 ]
 
