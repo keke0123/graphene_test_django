@@ -39,9 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cookbook',
     'animal',
+    'person',
     'graphene_django',
     # cors 설정용
     'corsheaders',
+    # rest_framework 설정
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

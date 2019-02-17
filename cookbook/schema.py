@@ -1,7 +1,9 @@
 import graphene
-from graphene import relay, ObjectType
+from graphene import relay, ObjectType, Mutation, InputObjectType
 from graphene_django.types import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
+
+#from graphene_django.rest_framework.mutation import SerializerMutation
 
 from cookbook.models import Category, Ingredient
 
@@ -31,7 +33,8 @@ class IngredientNode(DjangoObjectType):
             'category':['exact'],
             'category__name':['exact'], # 여기 언더바 두번이다 조심
         }
-        interfaces = (relay.Node,)
+        interfaces = (relay.Node,)  
+
 # Type 2
 class Query(ObjectType):
 # Type 1
@@ -73,3 +76,5 @@ class Query(ObjectType):
     all_categories = DjangoFilterConnectionField(CategoryNode)
     ingredient = relay.Node.Field(IngredientNode)
     all_ingredients = DjangoFilterConnectionField(IngredientNode)
+
+

@@ -14,3 +14,6 @@ class AnimalNode(DjangoObjectType):
 class Query(ObjectType):
     animal = relay.Node.Field(AnimalNode)
     all_animal = DjangoFilterConnectionField(AnimalNode)
+
+
+
